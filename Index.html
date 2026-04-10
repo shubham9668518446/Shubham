@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shubham Pradhan | Researcher & Biotechnologist</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+  :root[data-theme="dark"] {
+    --bg: #0a0d0f;
+    --bg2: #111518;
+    --bg3: #171d21;
+    --card: #141a1f;
+    --border: #1e2830;
+    --text: #e8f0f5;
+    --muted: #7a9aad;
+    --accent: #3eb489;
+    --accent2: #5ecba1;
+    --accent3: #1a5c42;
+    --gold: #c8a96e;
+    --highlight: rgba(62,180,137,0.08);
+    --shadow: rgba(0,0,0,0.6);
+    --nav-bg: rgba(10,13,15,0.92);
+  }
+  :root[data-theme="light"] {
+    --bg: #f4f7f5;
+    --bg2: #eaf0ec;
+    --bg3: #dde8e1;
+    --card: #ffffff;
+    --border: #c8ddd2;
+    --text: #0f1f18;
+    --muted: #4a7060;
+    --accent: #217a52;
+    --accent2: #2e9e6b;
+    --accent3: #b8e0cc;
+    --gold: #8a6830;
+    --highlight: rgba(33,122,82,0.07);
+    --shadow: rgba(0,0,0,0.12);
+    --nav-bg: rgba(244,247,245,0.94);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Mono', monospace;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+    cursor: default;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: var(--nav-bg);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 3rem;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--muted); text-decoration: none;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ─── THEME TOGGLE ─── */
+  .toggle-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    width: 52px; height: 28px;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s, border-color 0.3s;
+    flex-shrink: 0;
+  }
+  .toggle-btn::after {
+    content: '';
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.3s;
+  }
+  [data-theme="light"] .toggle-btn::after { transform: translateX(24px); }
+  .toggle-label {
+    font-size: 0.65rem; color: var(--muted);
+    letter-spacing: 0.05em; text-transform: uppercase;
+    margin-right: 0.5rem;
+  }
+  .toggle-wrap { display: flex; align-items: center; gap: 0.5rem; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 6rem 4rem;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent3) 0%, transparent 70%);
+    opacity: 0.35;
+    pointer-events: none;
+    animation: pulse 8s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.35; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+  }
+
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; font-weight: 400;
+    color: var(--accent); letter-spacing: 0.15em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+  .hero-tag::before {
+    content: '';
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s forwards;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  .hero-degree {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.55s forwards;
+  }
+  .hero-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.82rem;
+    line-height: 1.9;
+    color: var(--muted);
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.7s forwards;
+  }
+  .hero-ctas {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.85s forwards;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .btn-primary:hover { background: var(--accent2); transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 0.8rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 1s forwards;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.2rem; font-weight: 800;
+    color: var(--accent);
+    display: block;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--muted);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-top: 0.2rem;
+  }
+  .stat-divider {
+    width: 1px; background: var(--border);
+    height: 100%;
+  }
+
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; gap: 1.5rem;
+    opacity: 0;
+    animation: fadeRight 0.8s 0.5s forwards;
+  }
+  .badge-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .badge-card::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+  }
+  .badge-card:hover { transform: translateX(4px); border-color: var(--accent); }
+  .badge-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem; font-weight: 700;
+    color: var(--accent); letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .badge-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--muted);
+    line-height: 1.6;
+  }
+  .badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 600;
+    color: var(--border);
+    position: absolute; bottom: -10px; right: 1rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 6rem; border-top: 1px solid var(--border); }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; font-weight: 400;
+    color: var(--accent); letter-spacing: 0.2em;
+    text-transform: uppercase;
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1; height: 1px;
+    background: var(--border);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 3rem;
+  }
+  .section-title em { font-style: italic; color: var(--accent); }
+
+  /* ─── ABOUT ─── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem; line-height: 2;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+  .skills-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .skill-tag {
+    background: var(--highlight);
+    border: 1px solid var(--border);
+    padding: 0.75rem 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--text);
+    letter-spacing: 0.05em;
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: border-color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); }
+  .skill-tag::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.6rem;
+  }
+
+  /* ─── EDUCATION ─── */
+  .edu-timeline { position: relative; }
+  .edu-timeline::before {
+    content: '';
+    position: absolute; left: 12px; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .edu-item {
+    display: flex; gap: 2.5rem;
+    padding: 2rem 0 2rem 3rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .edu-item:last-child { border-bottom: none; }
+  .edu-item::before {
+    content: '';
+    position: absolute; left: 6px; top: 2.3rem;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    transition: background 0.2s;
+  }
+  .edu-item:hover::before { background: var(--accent); }
+  .edu-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--gold);
+    letter-spacing: 0.08em;
+    min-width: 80px; margin-top: 0.2rem;
+  }
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .edu-uni {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem; color: var(--muted);
+  }
+
+  /* ─── PUBLICATIONS ─── */
+  .pub-list { display: flex; flex-direction: column; gap: 1.5rem; }
+  .pub-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    position: relative;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: default;
+  }
+  .pub-card:hover { border-color: var(--accent); transform: translateX(6px); }
+  .pub-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 600;
+    color: var(--border);
+    position: absolute; top: 0.5rem; right: 1.5rem;
+    line-height: 1;
+  }
+  .pub-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.9rem; font-weight: 600;
+    line-height: 1.5; margin-bottom: 0.6rem;
+    padding-right: 3rem;
+  }
+  .pub-authors {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem; color: var(--muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  .pub-authors strong { color: var(--accent); }
+  .pub-journal {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem; color: var(--gold);
+  }
+  .pub-badge {
+    display: inline-block;
+    background: var(--highlight);
+    border: 1px solid var(--accent3);
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    margin-top: 0.5rem;
+    margin-right: 0.4rem;
+  }
+
+  /* ─── CONFERENCES ─── */
+  .conf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .conf-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: border-color 0.3s, transform 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .conf-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .conf-card::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .conf-card:hover::after { transform: scaleX(1); }
+  .conf-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.75rem;
+  }
+  .conf-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 600;
+    line-height: 1.5; margin-bottom: 0.5rem;
+  }
+  .conf-place {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--muted);
+  }
+
+  /* ─── FELLOWSHIP ─── */
+  .fellowship-box {
+    background: var(--card);
+    border: 1px solid var(--accent);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .fellowship-box::before {
+    content: 'BPRF';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem; font-weight: 600;
+    color: var(--highlight);
+    position: absolute; right: -10px; top: -10px;
+    line-height: 1;
+    pointer-events: none;
+  }
+  .fellowship-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+  .fellowship-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; color: var(--muted);
+    line-height: 1.9; max-width: 580px;
+  }
+  .fellowship-years {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300;
+    color: var(--gold);
+    text-align: center;
+    white-space: nowrap;
+    position: relative; z-index: 1;
+  }
+  .fellowship-years span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted); letter-spacing: 0.1em;
+    display: block; text-align: center;
+    margin-top: 0.25rem;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.5rem;
+  }
+  .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    text-align: center;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  .contact-card:hover { border-color: var(--accent); transform: translateY(-4px); }
+  .contact-icon {
+    font-size: 1.5rem; margin-bottom: 1rem;
+  }
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; color: var(--accent);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .contact-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem; color: var(--text);
+    word-break: break-all;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 3rem 6rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem; color: var(--muted);
+  }
+  .footer-accent {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem; font-style: italic;
+    color: var(--accent);
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeRight {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s, transform 0.7s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── HAMBURGER ─── */
+  .hamburger {
+    display: none;
+    flex-direction: column; gap: 5px;
+    cursor: pointer; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--text);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 64px; left: 0; right: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      flex-direction: column; gap: 0;
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8rem;
+    }
+    .hamburger { display: flex; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 7rem 1.5rem 3rem;
+      gap: 2.5rem;
+    }
+    .hero-stats { grid-template-columns: repeat(3,1fr); gap: 0.5rem; }
+    .stat-num { font-size: 1.5rem; }
+    .stat-label { font-size: 0.55rem; }
+
+    section { padding: 4rem 1.5rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .fellowship-box { grid-template-columns: 1fr; text-align: center; }
+    .fellowship-years { font-size: 2rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    .edu-item { gap: 1.5rem; padding-left: 2.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-name { font-size: 2.5rem; }
+    .section-title { font-size: 1.8rem; }
+    .conf-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <div class="nav-logo">SP</div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="nav-links" id="navLinks">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#education" onclick="closeMenu()">Education</a>
+    <a href="#research" onclick="closeMenu()">Research</a>
+    <a href="#publications" onclick="closeMenu()">Publications</a>
+    <a href="#conferences" onclick="closeMenu()">Conferences</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <div class="toggle-wrap">
+      <span class="toggle-label" id="themeLabel">Dark</span>
+      <button class="toggle-btn" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">Lichenologist &amp; Biotechnologist</div>
+    <h1 class="hero-name">Shubham<br><em>Pradhan</em></h1>
+    <div class="hero-degree">M.Sc. · M.Phil. · Ph.D. (Continuing) | BPRF Fellow</div>
+    <p class="hero-desc">
+      Researcher specializing in lichen diversity, phycobiont isolation, molecular taxonomy,
+      and bioactive compound characterization from cryptogamic organisms.
+      Department of Biotechnology, MSCB University.
+    </p>
+    <div class="hero-ctas">
+      <a href="#publications" class="btn-primary">View Publications</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="badge-card">
+      <div class="badge-title">Current Research</div>
+      <div class="badge-text">Isolation of phycobionts in lichens of different habitats of Odisha and study on their biopotential activities</div>
+      <div class="badge-num">PhD</div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">14</span>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">9</span>
+        <div class="stat-label">Conferences</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">2</span>
+        <div class="stat-label">Book Chapters</div>
+      </div>
+    </div>
+    <div class="badge-card">
+      <div class="badge-title">Fellowship</div>
+      <div class="badge-text">Biju Pattnaik Research Fellow — Funded by Science &amp; Technology Dept., Govt. of Odisha (2024–2027)</div>
+      <div class="badge-num">BPRF</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-label">01 — Profile</div>
+  <h2 class="section-title">About <em>Me</em></h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I am a PhD scholar with a strong foundation in botanical and ecological research, particularly in the field of lichenology, phycology, and molecular taxonomy. My work bridges fieldwork and laboratory-based investigations to unravel the biodiversity and biopotential of cryptogamic organisms.</p>
+      <p>My expertise includes conducting comprehensive field surveys in diverse botanical settings — parks, forests, and biosphere reserves — using GPS mapping, lichen monitoring, and herbarium preparation and documentation.</p>
+      <p>In the laboratory, I specialize in phytochemical screening, molecular characterization, phylogenetic analysis, and bioactivity studies of algae, photobionts, and lichens. My research has yielded publications in reputed journals including Elsevier, Springer, and Begell House.</p>
+    </div>
+    <div class="reveal">
+      <div style="margin-bottom:1.2rem;">
+        <div class="section-label" style="font-size:0.62rem; margin-bottom:0.8rem;">Core Expertise</div>
+        <div class="skills-grid">
+          <div class="skill-tag">Lichen Taxonomy</div>
+          <div class="skill-tag">Phycobionts</div>
+          <div class="skill-tag">Molecular Characterization</div>
+          <div class="skill-tag">Phylogenetic Studies</div>
+          <div class="skill-tag">Phytochemical Screening</div>
+          <div class="skill-tag">GC/MS Analysis</div>
+          <div class="skill-tag">Antioxidant Assays</div>
+          <div class="skill-tag">Antimicrobial Studies</div>
+          <div class="skill-tag">GPS Mapping</div>
+          <div class="skill-tag">Herbarium Prep.</div>
+          <div class="skill-tag">Bioactivity Studies</div>
+          <div class="skill-tag">DCA / PGDCA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EDUCATION ─── -->
+<section id="education">
+  <div class="section-label">02 — Academic Journey</div>
+  <h2 class="section-title"><em>Education</em> &amp; Qualifications</h2>
+  <div class="edu-timeline">
+    <div class="edu-item reveal">
+      <div class="edu-year">2023–</div>
+      <div>
+        <div class="edu-degree">Ph.D. — Biotechnology</div>
+        <div class="edu-uni">Maharaja Sriram Chandra Bhanja Deo University, Baripada, Odisha</div>
+        <div style="margin-top:0.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted);">Reg. No: Sc./BT/05/Ph.D./2023 · Supervisor: Dr Biswajit Rath</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">2022</div>
+      <div>
+        <div class="edu-degree">M.Phil. — Biotechnology</div>
+        <div class="edu-uni">Maharaja Sriram Chandra Bhanja Deo University, Baripada, Odisha</div>
+        <div style="margin-top:0.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted);">Thesis on epiphytic lichen community vs. host bark texture at MSCB University Campus</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">2020</div>
+      <div>
+        <div class="edu-degree">M.Sc. — Botany</div>
+        <div class="edu-uni">Centurion University of Technology and Management, BBSR, Odisha</div>
+        <div style="margin-top:0.4rem; font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--muted);">Thesis: Lichen diversity in southern Similipal Biosphere Reserve</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">2018</div>
+      <div>
+        <div class="edu-degree">B.Sc. (Honours) — Botany</div>
+        <div class="edu-uni">Fakir Mohan University, Vyas Bihar, Odisha</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">2015</div>
+      <div>
+        <div class="edu-degree">+2 Science (CHSC)</div>
+        <div class="edu-uni">S.N College, Soro, Odisha</div>
+      </div>
+    </div>
+    <div class="edu-item reveal">
+      <div class="edu-year">2013</div>
+      <div>
+        <div class="edu-degree">Matriculation</div>
+        <div class="edu-uni">Oupada High School, Oupada, Odisha</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESEARCH ─── -->
+<section id="research">
+  <div class="section-label">03 — Fellowship</div>
+  <h2 class="section-title"><em>Research</em> Fellowship</h2>
+  <div class="fellowship-box reveal">
+    <div>
+      <div class="fellowship-title">Biju Pattnaik Research Fellowship (BPRF)</div>
+      <p class="fellowship-desc">
+        Funded by the Science and Technology Department, Government of Odisha, for financial support under the prestigious BPRF scheme [Letter no. ST-BT-MIS-0026-2023-45/ST dt.04.01.2024]. This fellowship supports the doctoral research on isolation of phycobionts from lichens across diverse habitats of Odisha and the investigation of their biopotential activities.
+      </p>
+    </div>
+    <div class="fellowship-years">
+      2024–2027
+      <span>Fellowship Period</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PUBLICATIONS ─── -->
+<section id="publications">
+  <div class="section-label">04 — Research Output</div>
+  <h2 class="section-title">Peer-Reviewed <em>Publications</em></h2>
+  <div class="pub-list">
+
+    <div class="pub-card reveal">
+      <div class="pub-num">01</div>
+      <div class="pub-title">Revisionary study on the lichen's diversity of Khandagiri and Udayagiri</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Srimay Pradhan, Prasant Kumar Behera (2020)</div>
+      <div class="pub-journal">Indian Journal of Natural Sciences, 10(60): 26606–26612</div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">02</div>
+      <div class="pub-title">Kewda (Pandanus odorifer) Flower Derived Phytochemicals against Salutaridine Reductase of Hepatitis Virus Causing Hepatitis A</div>
+      <div class="pub-authors">Pratyasa Pradhan, Nibedita Patra, … <strong>Shubham Pradhan</strong>, Srimay Pradhan (2020)</div>
+      <div class="pub-journal">Journal of Pharmaceutical Research, 4 (2020): 5</div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">03</div>
+      <div class="pub-title">In vitro Antioxidant Activities of Lichen Species Dirinaria applanata and Parmotrema andinum Collected from Similipal Biosphere Reserve, India</div>
+      <div class="pub-authors">Bijayananda Sahoo, Satyabrata Dash, Sabyasachy Parida, <strong>Shubham Pradhan</strong>, Biswajit Rath (2022)</div>
+      <div class="pub-journal">Bioscience Biotechnology Research Communications</div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">04</div>
+      <div class="pub-title">Antioxidant and antimicrobial activities and GC/MS-based phytochemical analysis of two traditional Lichen species Trypethellium virens and Phaeographis dendritica</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Bijayananda Sahoo, Sabyasachy Parida, Biswajit Rath (2023)</div>
+      <div class="pub-journal">Journal of Genetic Engineering and Biotechnology (Elsevier), 21(1), 41</div>
+      <span class="pub-badge">Elsevier</span><span class="pub-badge">IF 3.7</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">05</div>
+      <div class="pub-title">In vitro study of antioxidant, antimicrobial, and anticancer activities of two selected cyanobacteria found across Odisha coast, India</div>
+      <div class="pub-authors">Dash Satyabrata, <strong>Shubham Pradhan</strong>, Bijayananda Sahoo, Sabyasachy Parida, Biswajit Rath (2023)</div>
+      <div class="pub-journal">Systems Microbiology and Biomanufacturing (Springer)</div>
+      <span class="pub-badge">Springer</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">06</div>
+      <div class="pub-title">Screening and characterization of bioactive compounds from two epiphytic microlichen and evaluation of their in-vitro antioxidant activity</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Sabyasachy Parida, Bijayananda Sahoo, Biswajit Rath (2023)</div>
+      <div class="pub-journal">Future Journal of Pharmaceutical Sciences (Springer)</div>
+      <span class="pub-badge">Springer</span><span class="pub-badge">IF 2.6</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">07</div>
+      <div class="pub-title">In vitro antimicrobial, antioxidant and molecular study of Nostoc punctiforme isolated from the rice field</div>
+      <div class="pub-authors">Jayanta Kumar Sahu, Sanjiv Kumar Dash, Satyabrata Dash, <strong>Shubham Pradhan</strong>, et al. (2023)</div>
+      <div class="pub-journal">South Asian Journal of Experimental Biology</div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">08</div>
+      <div class="pub-title">Enhanced yield of Mungbean (Vigna radiata L.) using bacterial Biofertilizer</div>
+      <div class="pub-authors">Brijesh Yadav, Nakulananda Mohanty, Satyabrata Dash, <strong>Shubham Pradhan</strong>, et al. (2023)</div>
+      <div class="pub-journal">Biosciences Biotechnology Research Asia</div>
+      <span class="pub-badge">UGC-CARE LIST II</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">09</div>
+      <div class="pub-title">Characterization of selected marine cyanobacteria as a source of compounds with antioxidant activity</div>
+      <div class="pub-authors">Satyabrata Dash, <strong>Shubham Pradhan</strong>, Bijayananda Sahoo, Biswajit Rath (2024)</div>
+      <div class="pub-journal">Discover Plants (Springer)</div>
+      <span class="pub-badge">Springer</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">10</div>
+      <div class="pub-title">Photobiont Diversity in Lichen Symbiosis from Northern Odisha (India)</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Bijayananda Sahoo, Biswajit Rath (2025)</div>
+      <div class="pub-journal">International Journal on Algae, 27(3): 261–272 (Begell House)</div>
+      <span class="pub-badge">UGC-CARE LIST II</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">11</div>
+      <div class="pub-title">A Comparative Study of Antioxidative Properties of the Lichen Parmotrema Tinctorum Distributed in Different Regions of Similipal Biosphere Reserve, Odisha, India</div>
+      <div class="pub-authors">Bijayananda Sahoo, <strong>Shubham Pradhan</strong>, Satyabrata Dash, Biswajit Rath (2025)</div>
+      <div class="pub-journal">Bioscience Biotechnology Research Asia, 22(2)</div>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">12</div>
+      <div class="pub-title">Assessment of lichen metabolites as possible natural antioxidant and antimicrobial agents</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Bijayananda Sahoo, Biswajit Rath (2025)</div>
+      <div class="pub-journal">Journal of Phytopharmacol, 14(6):476–492</div>
+      <span class="pub-badge">doi: 10.31254/phyto.2025.14609</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">13</div>
+      <div class="pub-title">Thymoquinone from Lichen Dirinaria frostii (Tuck.): A New Promising Antimicrobial Compound</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Bijayananda Sahoo, Sabyasachy Parida, Dalip Kumar Upreti, Biswajit Rath (2026)</div>
+      <div class="pub-journal">Current Microbiology, 83(3), 18 (Springer)</div>
+      <span class="pub-badge">Springer</span><span class="pub-badge">IF 2.6</span>
+    </div>
+
+    <div class="pub-card reveal">
+      <div class="pub-num">14</div>
+      <div class="pub-title">Range extension of the lichenized ascomycete, Cladonia fruticulosa Kremp., 1882, from Similipal Biosphere Reserve of Odisha</div>
+      <div class="pub-authors"><strong>Shubham Pradhan</strong>, Satyabrata Dash, Bijayananda Sahoo, Biswajit Rath (2026)</div>
+      <div class="pub-journal">Journal of Threatened Taxa, 18(3): 28594–28599 (Zoo Outreach Organization)</div>
+      <span class="pub-badge">IF 0.4</span>
+    </div>
+
+  </div>
+
+  <div style="margin-top:3rem;">
+    <div class="section-label" style="font-size:0.62rem; margin-bottom:1.5rem;">Book Chapters</div>
+    <div class="pub-list">
+      <div class="pub-card reveal">
+        <div class="pub-num">BC1</div>
+        <div class="pub-title">Algal Biomass: Potential Feedstock for Value-Added Molecules</div>
+        <div class="pub-authors">Sabyasachy Parida, Satyabrata Dash, Bijayananda Sahoo, <strong>Shubham Pradhan</strong>, Keshab Chandra Mondal, Biswajit Rath (2025)</div>
+        <div class="pub-journal">Algal Biomass Technology and Research, p32. Apple Academic Press (Taylor &amp; Francis)</div>
+        <span class="pub-badge">Taylor &amp; Francis</span>
+      </div>
+      <div class="pub-card reveal">
+        <div class="pub-num">BC2</div>
+        <div class="pub-title">The potential of algae from marine sources for future large-scale commercial product generation and its application</div>
+        <div class="pub-authors">Satyabrata Dash, <strong>Shubham Pradhan</strong>, Bijayananda Sahoo, Sabyasachy Parida, Biswajit Rath</div>
+        <div class="pub-journal">Algal Biorefinery, p37–55 (Elsevier)</div>
+        <span class="pub-badge">Elsevier</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONFERENCES ─── -->
+<section id="conferences">
+  <div class="section-label">05 — Academic Events</div>
+  <h2 class="section-title">Conferences &amp; <em>Workshops</em></h2>
+  <div style="margin-bottom:2rem;">
+    <div class="section-label" style="font-size:0.62rem; margin-bottom:1.2rem;">Conferences Participated / Presented</div>
+    <div class="conf-grid">
+      <div class="conf-card reveal">
+        <div class="conf-num">#01 · Dec 2018</div>
+        <div class="conf-name">43rd Annual Conference of Odisha Botanical Society</div>
+        <div class="conf-place">Centurion University, Bhubaneswar · "Plants for Sustainable Development and Clean Environment"</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#02 · Nov 2021</div>
+        <div class="conf-name">22nd Odisha Bigyan O' Paribesh Congress</div>
+        <div class="conf-place">Odisha Environment Society, Ravenshaw University</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#03 · Dec 2021</div>
+        <div class="conf-name">Research Scholars' Conclave</div>
+        <div class="conf-place">MSCB University, Baripada</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#04 · Nov 2022</div>
+        <div class="conf-name">23rd Odisha Bigyan O' Paribesh Congress</div>
+        <div class="conf-place">Odisha Environment Society, Sambalpur University</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#05 · Dec 2023</div>
+        <div class="conf-name">24th Bigyan O' Paribesh Congress</div>
+        <div class="conf-place">Odisha Environment Society, Berhampur University</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#06 · Nov 2024</div>
+        <div class="conf-name">25th Bigyan O' Paribesh Congress</div>
+        <div class="conf-place">Odisha Environment Society, IMMT</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#07 · Dec 2024</div>
+        <div class="conf-name">Cryptogam Conference — "Advances and Perspectives in Cryptogam Research"</div>
+        <div class="conf-place">CSIR-National Botanical Research Institute, Lucknow</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#08 · May 2025</div>
+        <div class="conf-name">Science Academies' Lecture Workshop</div>
+        <div class="conf-place">MSCB University · "Biotechnology: Impact on Biodiversity for Sustainable Development"</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">#09 · Mar 2025</div>
+        <div class="conf-name">National Seminar on "Microbial Technology for Health, Environment, and Employment"</div>
+        <div class="conf-place">Vidyasagar University, West Medinipur, West Bengal</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:3rem;">
+    <div class="section-label" style="font-size:0.62rem; margin-bottom:1.2rem;">Workshops Participated</div>
+    <div class="conf-grid">
+      <div class="conf-card reveal">
+        <div class="conf-num">Sep 2019</div>
+        <div class="conf-name">Identification, Bioprospecting and Conservation of Lichens</div>
+        <div class="conf-place">Bharathiar University, Coimbatore, Tamilnadu</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">Dec 2021</div>
+        <div class="conf-name">JSBTM Sponsored Online Faculty Development Programme in Recombinant DNA Technology (Batch XVI)</div>
+        <div class="conf-place">CG Bhakta Institute of Biotechnology, Uka Tarsadia University, Bardoli, Gujarat</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">Feb 2022</div>
+        <div class="conf-name">Online Certificate Course in Recombinant DNA Technology (Batch XVIII)</div>
+        <div class="conf-place">Microbiology Society India</div>
+      </div>
+      <div class="conf-card reveal">
+        <div class="conf-num">Jan 2024</div>
+        <div class="conf-name">Taxonomic Methods: Exploration, Identification, Nomenclature &amp; Preservation of Plant Resources</div>
+        <div class="conf-place">Department of Botany (SOAS), CUTM, BBSR, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="section-label">06 — Get in Touch</div>
+  <h2 class="section-title"><em>Contact</em> &amp; Personal Details</h2>
+  <div class="contact-grid">
+    <div class="contact-card reveal">
+      <div class="contact-icon">✉</div>
+      <div class="contact-label">Email</div>
+      <div class="contact-value">shubham9668518446<br>@gmail.com</div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">☎</div>
+      <div class="contact-label">Mobile</div>
+      <div class="contact-value">+91 9669999935</div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">⚑</div>
+      <div class="contact-label">Address</div>
+      <div class="contact-value">At- Pratappur, PO- Oupada<br>Dist- Balasore, Odisha · 756049</div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">◈</div>
+      <div class="contact-label">Institution</div>
+      <div class="contact-value">Dept. of Biotechnology, MSCB University, Baripada — 757003</div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">◎</div>
+      <div class="contact-label">Date of Birth</div>
+      <div class="contact-value">2nd February, 1998</div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-icon">◉</div>
+      <div class="contact-label">Languages</div>
+      <div class="contact-value">English · Hindi · Odia</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-text">© 2025 Shubham Pradhan · All rights reserved</div>
+  <div class="footer-accent">M.Sc. · M.Phil. · Ph.D. (Continuing)</div>
+  <div class="footer-text">BPRF Fellow · Dept. of Biotechnology · MSCB University</div>
+</footer>
+
+<script>
+  // ─── Theme ───
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.getElementById('themeLabel').textContent = isDark ? 'Light' : 'Dark';
+  }
+
+  // ─── Menu ───
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('navLinks').classList.remove('open');
+  }
+
+  // ─── Scroll reveal ───
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i % 4) * 0.1 + 's';
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── Active nav highlight ───
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
